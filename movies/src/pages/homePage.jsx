@@ -6,33 +6,55 @@ import FilterCard from "../components/filterMoviesCard";
 
 const HomePage = (props) => {
   const [movies, setMovies] = useState([]);
+  const [nameFilter, setNameFilter] = useState("");
+  const [genreFilter, setGenreFilter] = useState("0");
 
+  // Fetch movies from TMDB API
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&page=1`
     )
       .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        return json.results;
-      })
+      .then((json) => json.results)
       .then((movies) => {
         setMovies(movies);
       });
   }, []);
+
+  // Filtering logic
+  const genreId = Number(genreFilter);
+
+  const displayedMovies = movies
+    .filter((m) => m.title.toLowerCase().includes(nameFilter.toLowerCase()))
+    .filter((m) => (genreId > 0 ? m.genre_ids.includes(genreId) : true));
+
+  // Handle user input from FilterCard
+  const handleChange = (type, value) => {
+    if (type === "name") setNameFilter(value);
+    else setGenreFilter(value);
+  };
 
   return (
     <Grid container>
       <Grid size={12}>
         <Header title={"Home Page"} />
       </Grid>
-      <Grid container sx={{flex: "1 1 500px"}}>
-        <Grid key="find" size={{xs: 12, sm: 6, md: 4, lg: 3, xl: 2}} sx={{padding: "20px"}}>
-          <FilterCard />
+      <Grid container sx={{ flex: "1 1 500px" }}>
+        <Grid 
+          key="find" 
+          size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }} 
+          sx={{ padding: "20px" }}
+        >
+          <FilterCard
+            onUserInput={handleChange}
+            titleFilter={nameFilter}
+            genreFilter={genreFilter}
+          />
         </Grid>
-        <MovieList movies={movies}></MovieList>
+        <MovieList movies={displayedMovies} />
       </Grid>
     </Grid>
   );
 };
+
 export default HomePage;
