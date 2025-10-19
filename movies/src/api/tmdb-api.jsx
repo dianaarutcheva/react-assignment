@@ -1,3 +1,6 @@
+// src/api/tmdb-api.jsx
+
+// Fetches a list of movies from TMDB
 export const getMovies = () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
@@ -15,12 +18,29 @@ export const getMovies = () => {
     });
 };
 
-export const getMovie = (id) => {
+// Fetches details of a single movie by ID using React Query array key
+export const getMovie = (args) => {
+  // console.log(args) // Uncomment to inspect the argument object passed by React Query
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
-  ).then((res) => res.json());
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
+// Fetches the list of movie genres
 export const getGenres = () => {
   return fetch(
     `https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
@@ -38,18 +58,44 @@ export const getGenres = () => {
     });
 };
 
-export const getMovieImages = (id) => {
+// Fetches movie images (posters/backdrops) by movie ID using React Query array key
+export const getMovieImages = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
   )
-    .then((res) => res.json())
-    .then((json) => json.posters);
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
-export const getMovieReviews = (id) => {
+// Fetches reviews for a specific movie by ID using React Query array key
+export const getMovieReviews = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${import.meta.env.VITE_TMDB_KEY}`
   )
-    .then((res) => res.json())
-    .then((json) => json.results);
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
