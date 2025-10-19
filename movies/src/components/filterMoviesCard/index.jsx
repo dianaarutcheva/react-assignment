@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getGenres } from "../../api/tmdb-api";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -18,27 +19,19 @@ const formControl = {
 };
 
 export default function FilterMoviesCard(props) {
-  // State for genres
   const [genres, setGenres] = useState([{ id: '0', name: "All" }]);
 
-  // Fetch genres from TMDB API
+  // Fetch genres using API helper
   useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-        import.meta.env.VITE_TMDB_KEY
-    )
-      .then(res => res.json())
-      .then(json => json.genres)
-      .then(apiGenres => {
-        setGenres([genres[0], ...apiGenres]);
-      });
-      // eslint-disable-next-line
+    getGenres().then((allGenres) => {
+      setGenres([genres[0], ...allGenres]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Event handlers
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value);  // Updated to call parent
+    props.onUserInput(type, value);
   };
 
   const handleTextChange = e => {
@@ -50,14 +43,10 @@ export default function FilterMoviesCard(props) {
   };
 
   return (
-    <Card 
-      sx={{ backgroundColor: "rgb(204, 204, 0)" }} 
-      variant="outlined"
-    >
+    <Card sx={{ backgroundColor: "rgb(204, 204, 0)" }} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
+          <SearchIcon fontSize="large" /> Filter the movies.
         </Typography>
         <TextField
           sx={{ ...formControl }}
@@ -92,9 +81,7 @@ export default function FilterMoviesCard(props) {
       />
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
+          <SearchIcon fontSize="large" /> Filter the movies.
         </Typography>
       </CardContent>
     </Card>
