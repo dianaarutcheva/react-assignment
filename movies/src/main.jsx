@@ -1,7 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import HomePage from "./pages/homePage";
+import MovieDetailsPage from './pages/movieDetailsPage'; // NEW
 
+// Sample movie object
 const sample = {
   adult: false,
   backdrop_path: "/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",
@@ -13,25 +15,12 @@ const sample = {
   },
   budget: 200000000,
   genres: [
-    {
-      id: 14,
-      name: "Fantasy",
-    },
-    {
-      id: 12,
-      name: "Adventure",
-    },
-    {
-      id: 878,
-      name: "Science Fiction",
-    },
-    {
-      id: 28,
-      name: "Action",
-    },
+    { id: 14, name: "Fantasy" },
+    { id: 12, name: "Adventure" },
+    { id: 878, name: "Science Fiction" },
+    { id: 28, name: "Action" },
   ],
-  homepage:
-    "https://www.starwars.com/films/star-wars-episode-viii-the-last-jedi",
+  homepage: "https://www.starwars.com/films/star-wars-episode-viii-the-last-jedi",
   id: 181808,
   imdb_id: "tt2527336",
   original_language: "en",
@@ -41,40 +30,15 @@ const sample = {
   popularity: 44.208,
   poster_path: "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
   production_companies: [
-    {
-      id: 1,
-      logo_path: "/o86DbpburjxrqAzEDhXZcyE8pDb.png",
-      name: "Lucasfilm",
-      origin_country: "US",
-    },
-    {
-      id: 11092,
-      logo_path: null,
-      name: "Ram Bergman Productions",
-      origin_country: "US",
-    },
-    {
-      id: 2,
-      logo_path: "/wdrCwmRnLFJhEoH8GSfymY85KHT.png",
-      name: "Walt Disney Pictures",
-      origin_country: "US",
-    },
+    { id: 1, logo_path: "/o86DbpburjxrqAzEDhXZcyE8pDb.png", name: "Lucasfilm", origin_country: "US" },
+    { id: 11092, logo_path: null, name: "Ram Bergman Productions", origin_country: "US" },
+    { id: 2, logo_path: "/wdrCwmRnLFJhEoH8GSfymY85KHT.png", name: "Walt Disney Pictures", origin_country: "US" },
   ],
-  production_countries: [
-    {
-      iso_3166_1: "US",
-      name: "United States of America",
-    },
-  ],
+  production_countries: [{ iso_3166_1: "US", name: "United States of America" }],
   release_date: "2017-12-13",
   revenue: 1332459537,
   runtime: 152,
-  spoken_languages: [
-    {
-      iso_639_1: "en",
-      name: "English",
-    },
-  ],
+  spoken_languages: [{ iso_639_1: "en", name: "English" }],
   status: "Released",
   tagline: "Darkness rises... and light to meet it",
   title: "Star Wars: The Last Jedi",
@@ -83,13 +47,20 @@ const sample = {
   vote_count: 9692,
 };
 
-const movies = [sample, sample, sample, sample, sample, sample, sample];
+// Array of images
+const images = [
+  "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+  "/v1QQKq8M0fWxMgSdGOX1aCv8qMB.jpg",
+  "/2iGN0aKHJYD0xQydlfuCUAcgNbO.jpg",
+  "/rjBwhsOzHKUw2NIOrE7aMqjfe6s.jpg",
+];
 
+// App component: use MovieDetailsPage instead of HomePage
 const App = () => {
   return (
-      <HomePage movies={movies} />
+    <MovieDetailsPage movie={sample} images={images} />  // UPDATED
   );
 };
 
-const rootElement = createRoot( document.getElementById("root") )
+const rootElement = createRoot(document.getElementById("root"));
 rootElement.render(<App />);
