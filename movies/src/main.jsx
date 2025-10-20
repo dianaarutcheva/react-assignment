@@ -11,6 +11,8 @@ import MovieReviewPage from "./pages/movieReviewPage";
 import AddMovieReviewPage from './pages/addMovieReviewPage'; // New import
 import SiteHeader from './components/siteHeader';
 import MoviesContextProvider from "./contexts/moviesContext";
+import UpcomingMoviesPage from './pages/upcomingMoviesPage';
+
 
 // Create a query client to manage the cache
 const queryClient = new QueryClient({
@@ -36,6 +38,7 @@ const App = () => {
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
