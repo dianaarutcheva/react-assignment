@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
+import LanguageIcon from "@mui/icons-material/Language";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
@@ -44,17 +45,16 @@ const MovieDetails = ({ movie }) => {
         ))}
       </Paper>
 
-<Paper component="ul" sx={{ ...root }}>
-  <li>
-    <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
-  </li>
-  {movie.production_countries.map((c) => (
-    <li key={c.name}>
-      <Chip label={c.name} sx={{ ...chip }} />
-    </li>
-  ))}
-</Paper>
-
+      <Paper component="ul" sx={{ ...root }}>
+        <li>
+          <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
+        </li>
+        {movie.production_countries.map((c) => (
+          <li key={c.name}>
+            <Chip label={c.name} sx={{ ...chip }} />
+          </li>
+        ))}
+      </Paper>
 
       <Paper component="ul" sx={{ ...root }}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
@@ -67,6 +67,10 @@ const MovieDetails = ({ movie }) => {
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+        <Chip
+          icon={<LanguageIcon />}
+          label={`Original language: ${movie.original_language}`}
+        />
       </Paper>
 
       <Fab
