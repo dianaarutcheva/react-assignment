@@ -12,32 +12,42 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+
 
 const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  
+ 
   const navigate = useNavigate();
+
 
   const menuOptions = [
   { label: "Home", path: "/" },
   { label: "Favorites", path: "/movies/favorites" },
   { label: "Upcoming", path: "/movies/upcoming" },
   { label: "Trending Today", path: "/movies/trending/today" }, // New link
+  { label: "Popular", path: "/popular" },
+  { label: "Top Rated", path: "/top-rated" },
+  { label: "Now Playing", path: "/now-playing" },
 ];
+
 
   const handleMenuSelect = (pageURL) => {
     setAnchorEl(null);
     navigate(pageURL);
   };
 
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
 
   return (
     <>
@@ -105,4 +115,7 @@ const SiteHeader = () => {
   );
 };
 
+
 export default SiteHeader;
+
+

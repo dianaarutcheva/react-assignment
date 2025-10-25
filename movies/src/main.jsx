@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router";
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
@@ -13,6 +14,10 @@ import SiteHeader from './components/siteHeader';
 import MoviesContextProvider from "./contexts/moviesContext";
 import UpcomingMoviesPage from './pages/upcomingMoviesPage';
 import TrendingMoviesPage from './pages/trendingMoviesPage';
+import PopularMoviesPage from './pages/popularMoviesPage';
+import TopRatedMoviesPage from './pages/topRatedMoviesPage';
+import NowPlayingMoviesPage from './pages/nowPlayingMoviesPage';
+
 
 // Create a query client to manage the cache
 const queryClient = new QueryClient({
@@ -24,6 +29,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 
 const App = () => {
   return (
@@ -40,6 +46,9 @@ const App = () => {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/movies/trending/today" element={<TrendingMoviesPage />} />
+            <Route path="/popular" element={<PopularMoviesPage />} />
+            <Route path="/top-rated" element={<TopRatedMoviesPage />} />
+            <Route path="/now-playing" element={<NowPlayingMoviesPage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
@@ -48,5 +57,11 @@ const App = () => {
   );
 };
 
+
 const rootElement = createRoot(document.getElementById("root"));
 rootElement.render(<App />);
+
+
+
+
+

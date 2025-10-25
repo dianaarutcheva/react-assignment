@@ -5,26 +5,33 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 
+
 const HomePage = (props) => {
+
 
   const { data, error, isPending, isError } = useQuery({
     queryKey: ['discover'],
     queryFn: getMovies,
   });
 
+
   if (isPending) {
     return <Spinner />;
   }
+
 
   if (isError) {
     return <h1>{error.message}</h1>;
   }  
 
+
   const movies = data.results;
+
 
   // Optional: update localStorage for favorites (can be kept if needed)
   const favorites = movies.filter(m => m.favorite);
   localStorage.setItem('favorites', JSON.stringify(favorites));
+
 
   return (
     <PageTemplate
@@ -37,4 +44,7 @@ const HomePage = (props) => {
   );
 };
 
+
 export default HomePage;
+
+
