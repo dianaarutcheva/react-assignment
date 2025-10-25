@@ -1,3 +1,6 @@
+//For Assignment: displays all time top rated movies
+
+
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "@tanstack/react-query";

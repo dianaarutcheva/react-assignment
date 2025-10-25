@@ -10,6 +10,9 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 const root = {
   display: "flex",
@@ -73,6 +76,26 @@ const MovieDetails = ({ movie }) => {
         />
       </Paper>
 
+ {/* New section: Credits and Recommendations */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 3 }}>
+        <Button
+          component={Link}  // Use React Router Link for navigation
+          to={`/movie/${movie.id}/credits`}
+          variant="outlined"
+          color="primary"
+        >
+          View Cast
+        </Button>
+        <Button
+          component={Link}  // Use React Router Link for navigation
+          to={`/movie/${movie.id}/recommendations`}
+          variant="outlined"
+          color="secondary"
+        >
+          Recommended Movies
+        </Button>
+      </Box>
+      
       <Fab
         color="secondary"
         variant="extended"

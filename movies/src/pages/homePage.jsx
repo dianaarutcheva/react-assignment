@@ -28,11 +28,6 @@ const HomePage = (props) => {
   const movies = data.results;
 
 
-  // Optional: update localStorage for favorites (can be kept if needed)
-  const favorites = movies.filter(m => m.favorite);
-  localStorage.setItem('favorites', JSON.stringify(favorites));
-
-
   return (
     <PageTemplate
       title='Discover Movies'
