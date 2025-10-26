@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import IconButton from "@mui/material/IconButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const AddToWatchlistIcon = ({ movie }) => {
-  // For now, clicking does nothing
-  const handleClick = (e) => {
+  const context = useContext(MoviesContext);
+  
+  const handleAddToPlaylist = (e) => {
     e.preventDefault();
+    context.addToPlaylist(movie);
   };
 
   return (
-    <IconButton aria-label="add to watchlist" onClick={handleClick}>
+    <IconButton aria-label="add to playlist" onClick={handleAddToPlaylist}>
       <PlaylistAddIcon color="primary" fontSize="large" />
     </IconButton>
   );

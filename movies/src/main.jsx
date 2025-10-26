@@ -20,7 +20,7 @@ import TopRatedMoviesPage from './pages/topRatedMoviesPage';
 import NowPlayingMoviesPage from './pages/nowPlayingMoviesPage';
 import MovieCreditsPage from "./pages/movieCreditsPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
-
+import PlaylistPage from "./pages/playlistPage";
 
 
 
@@ -56,6 +56,8 @@ const App = () => {
             <Route path="/now-playing" element={<NowPlayingMoviesPage />} />
             <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/movie/:id/recommendations" element={<MovieRecommendationsPage />} />
+            <Route path="/movies/playlist" element={<PlaylistPage />} />
+
 
           </Routes>
         </MoviesContextProvider>
