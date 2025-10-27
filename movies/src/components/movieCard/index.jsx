@@ -17,7 +17,7 @@ import img from "../../images/film-poster-placeholder.png";
 
 export default function MovieCard({ movie, action }) {
   return (
-    <Card>
+     <Card sx={{ backgroundColor: "#1a1a1a", boxShadow: "0 0 10px #ff69b4" }}>
       <CardHeader
         avatar={
           movie.favorite ? (

@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg';
+import img from '../../images/filter-movies.jpeg'; 
 
 const formControl = {
   margin: 1,
@@ -35,8 +35,8 @@ export default function FilterMoviesCard(props) {
   }
 
   const genres = data.genres;
-  if (genres[0].name !== "All") {
-    genres.unshift({ id: "0", name: "All" });
+  if (genres[0].name !== "Select Genre") {
+    genres.unshift({ id: "0", name: "Select Genre" });
   }
 
   const handleChange = (e, type, value) => {
@@ -53,13 +53,22 @@ export default function FilterMoviesCard(props) {
   };
 
   return (
-    <Card sx={{ backgroundColor: "rgb(204, 204, 0)" }} variant="outlined">
+  <Card sx={{ backgroundColor: "#000", boxShadow: "0 0 10px #ff69b4" }} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" /> Filter the movies.
         </Typography>
+
+
+
         <TextField
-          sx={{ ...formControl }}
+           sx={{
+        marginBottom: 2,
+        minWidth: "90%",
+        input: { color: "#fff" },            // White text inside
+        label: { color: "#ff69b4" },         // Pink label
+        '.MuiFilledInput-root': { backgroundColor: "#1a1a1a" }, // Dark background
+      }}
           id="filled-search"
           label="Search field"
           type="search"
@@ -67,14 +76,22 @@ export default function FilterMoviesCard(props) {
           value={props.titleFilter}
           onChange={handleTextChange}
         />
-        <FormControl sx={{ ...formControl }}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+
+
+        <FormControl sx={{ 
+  ...formControl, 
+  backgroundColor: "#1a1a1a" // dim background 
+}}>
+         
           <Select
             labelId="genre-label"
             id="genre-select"
             defaultValue=""
             value={props.genreFilter}
             onChange={handleGenreChange}
+             sx={{
+      color: "#ff69b4", // Pink text 
+    }}
           >
             {genres.map((genre) => (
               <MenuItem key={genre.id} value={genre.id}>
@@ -83,6 +100,10 @@ export default function FilterMoviesCard(props) {
             ))}
           </Select>
         </FormControl>
+
+
+
+
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}

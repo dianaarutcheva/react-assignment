@@ -21,6 +21,8 @@ import NowPlayingMoviesPage from './pages/nowPlayingMoviesPage';
 import MovieCreditsPage from "./pages/movieCreditsPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import PlaylistPage from "./pages/playlistPage";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme"; // import custom theme
 
 
 
@@ -37,12 +39,15 @@ const queryClient = new QueryClient({
 
 
 const App = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <SiteHeader />
-        <MoviesContextProvider>
-          <Routes>
+  return ( 
+// import custom theme
+    <ThemeProvider theme={theme}>  
+
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <SiteHeader />
+          <MoviesContextProvider>
+            <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/reviews/form" element={<AddMovieReviewPage />} /> 
@@ -57,16 +62,14 @@ const App = () => {
             <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/movie/:id/recommendations" element={<MovieRecommendationsPage />} />
             <Route path="/movies/playlist" element={<PlaylistPage />} />
-
-
-          </Routes>
-        </MoviesContextProvider>
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+            </Routes>
+          </MoviesContextProvider>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
-
 
 const rootElement = createRoot(document.getElementById("root"));
 rootElement.render(<App />);

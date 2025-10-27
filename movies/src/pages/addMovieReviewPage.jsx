@@ -24,7 +24,17 @@ const WriteReviewPage = (props) => {
   }
   return (
     <PageTemplate movie={movie}>
-      <ReviewForm movie={movie} />
+       <div
+        style={{
+          backgroundColor: "#1a1a1a", // dark page background
+          minHeight: "100vh",          
+          padding: "2rem",             // spacing around form
+          borderRadius: "16px",        
+          boxShadow: "0 0 10px #ff69b4" 
+        }}
+      >
+        <ReviewForm movie={movie} />
+      </div>
     </PageTemplate>
   );
 };

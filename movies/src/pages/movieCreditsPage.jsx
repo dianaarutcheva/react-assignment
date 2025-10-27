@@ -24,12 +24,20 @@ const MovieCreditsPage = () => {
   };
 
   const cardStyle = {
-    backgroundColor: "#fff",
+    backgroundColor: "#1a1a1a",
     borderRadius: "16px",
     overflow: "hidden",
     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
     textAlign: "center",
+    boxShadow: "0 0 10px #ff69b4",   // subtle pink glow by default
+    transition: "0.3s ease",  // smooth animation
+    cursor: "pointer",
   };
+
+  const hoverStyle = {
+  boxShadow: "0 0 25px #ff1493",    // more intense pink glow on hover
+};
+
 
   const imgStyle = {
     width: "100%",
@@ -39,15 +47,27 @@ const MovieCreditsPage = () => {
 
   return (
     <div style={{ padding: "1.5em", maxWidth: "1200px", margin: "0 auto" }}>
-      <Link to={`/movie/${id}`} style={{ display: "inline-block", marginBottom: "1em", textDecoration: "none", color: "#1976d2" }}>
-        ← Back to Movie
-      </Link>
+     <Link to={`/movies/${id}`} style={{ color: "#ff69b4", textDecoration: "none", fontSize: "1rem" }}>
+  ← Back to Movie Info
+</Link>
 
-      <h2 style={{ textAlign: "center", fontSize: "2em", marginBottom: "1em" }}>Cast</h2>
+      <h2
+  style={{
+    textAlign: "center",
+    fontSize: "2.5em",
+    marginBottom: "1.5em",
+    color: "#ff69b4",          // pink colour
+    textShadow: "0 0 10px #ff69b4", // glow effect
+  }}
+>
+  Cast
+</h2>
 
       <ul style={gridStyle}>
         {cast.map((member) => (
-          <li key={member.cast_id} style={cardStyle}>
+          <li key={member.cast_id} style={cardStyle}
+          onMouseEnter={(e) => Object.assign(e.currentTarget.style, hoverStyle)}
+          onMouseLeave={(e) => Object.assign(e.currentTarget.style, cardStyle)}>
             {member.profile_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w300/${member.profile_path}`}
@@ -60,7 +80,7 @@ const MovieCreditsPage = () => {
               </div>
             )}
             <div style={{ padding: "1em" }}>
-              <p style={{ fontWeight: "bold", margin: "0.5em 0" }}>{member.name}</p>
+              <p style={{ fontWeight: "bold", margin: "0.5em 0", color: "#ff69b4" }}>{member.name}</p>
               <p style={{ color: "#555", margin: "0.25em 0" }}>{member.character}</p>
             </div>
           </li>

@@ -66,7 +66,11 @@ const ReviewForm = ({ movie }) => {
         </MuiAlert>
       </Snackbar>
 
-      <Typography component="h2" variant="h3">
+      <Typography component="h2" variant="h3"
+       sx={{ 
+    color: "#ff69b4",           // hot pink text
+    textShadow: "0 0 8px #ff69b4" // glow
+  }}>
         Write a review
       </Typography>
 

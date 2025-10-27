@@ -31,12 +31,12 @@ const SiteHeader = () => {
   { label: "Home", path: "/" },
   { label: "Favorites", path: "/movies/favorites" },
   { label: "Upcoming", path: "/movies/upcoming" },
-  { label: "Trending Today", path: "/movies/trending/today" }, 
-  //for assignment:
-  { label: "Popular", path: "/popular" },  
+  { label: "Playlist", path: "/movies/playlist" },
+  { label: "Popular", path: "/popular" },   
   { label: "Top Rated", path: "/top-rated" },
   { label: "Now Playing", path: "/now-playing" },
-  { label: "Playlist", path: "/movies/playlist" },
+  { label: "Trending Today", path: "/movies/trending/today" },
+
 ];
 
 
@@ -53,12 +53,16 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+       <AppBar
+      position="fixed"
+      color="secondary"
+      sx={{ boxShadow: "0 0 20px #ff69b4" }}
+    >
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4"  sx={{ flexGrow: 1, color: "#ff69b4", textShadow: "0 0 10px #ff69b4" }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: "#fff" }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (
@@ -68,7 +72,7 @@ const SiteHeader = () => {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleMenu}
-                  color="inherit"
+                  sx={{ color: "#ff69b4" }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -91,6 +95,7 @@ const SiteHeader = () => {
                     <MenuItem
                       key={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
+                      sx={{ color: "#ff69b4" }}
                     >
                       {opt.label}
                     </MenuItem>
@@ -100,13 +105,20 @@ const SiteHeader = () => {
             ) : (
               <>
                 {menuOptions.map((opt) => (
-                  <Button
-                    key={opt.label}
-                    color="inherit"
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </Button>
+                 <Button
+                  key={opt.label}
+                  onClick={() => handleMenuSelect(opt.path)}
+                  sx={{
+                    color: "#ff69b4",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                    color: "#ffb6c1", // lighter pink on hover
+                    textShadow: "0 0 8px #ffffff", // white glow
+    },
+  }}
+>
+  {opt.label}
+</Button>
                 ))}
               </>
             )}
