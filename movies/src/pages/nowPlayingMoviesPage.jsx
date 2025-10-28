@@ -1,5 +1,3 @@
-//For Assignment: displays movies that are currently playing in theatres
-
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "@tanstack/react-query";

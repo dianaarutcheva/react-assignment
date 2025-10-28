@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+//new image for filter background
 import img from '../../images/filter-movies.jpeg'; 
 
 const formControl = {

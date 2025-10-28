@@ -11,6 +11,8 @@ const AddToWatchlistIcon = ({ movie }) => {
     context.addToPlaylist(movie);
   };
 
+
+  // Adds movies to playlist to watch later when they are released 
   return (
     <IconButton aria-label="add to playlist" onClick={handleAddToPlaylist}>
       <PlaylistAddIcon color="primary" fontSize="large" />

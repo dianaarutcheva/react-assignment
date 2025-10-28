@@ -1,4 +1,3 @@
-
 // src/api/tmdb-api.jsx
 
 
@@ -148,8 +147,7 @@ export const getTrendingToday = () => {
 };
 
 
-
-//STATIC ENDPOINTS
+//STATIC ENDPOINTS:
 
 // Fetches a list of currently popular movies
 export const getPopularMovies = () => {
@@ -207,12 +205,9 @@ export const getNowPlayingMovies = () => {
 
 
 
-
-
-
 //PARAMETERISED ENPOINTS:
 
-// Fetch movie credits (cast + crew)
+// Fetch movie credits (cast)
 export const getMovieCredits = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
@@ -232,6 +227,8 @@ export const getMovieCredits = ({ queryKey }) => {
       throw error;
     });
 };
+
+
 
 // Fetch movie recommendations (movies similar to this one)
 export const getMovieRecommendations = ({ queryKey }) => {
